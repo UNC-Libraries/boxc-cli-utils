@@ -32,7 +32,7 @@ jobs:
     - name: Checkout migration-util repository
       uses: actions/checkout@v2
       with:
-        path: migration-util
+        path: boxc-cli-utils
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -46,6 +46,6 @@ jobs:
     - name: Build boxc with Maven
       run: mvn -B -U clean install -DskipTests -am -pl persistence
       working-directory: boxc
-    - name: Build migration-util
+    - name: Build boxc-cli-utils
       run: mvn -B -U clean install
-      working-directory: migration-util
+      working-directory: boxc-cli-utils
