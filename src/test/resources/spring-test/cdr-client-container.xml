@@ -111,16 +111,6 @@
         <property name="client" ref="fcrepoClient" />
         <property name="binaryTransferService" ref="binaryTransferService" />
     </bean>
-    
-    <bean id="pathIndex" class="edu.unc.lib.dcr.migration.paths.PathIndex"
-            destroy-method="close">
-        <property name="databaseUrl" value="mem:test;DB_CLOSE_DELAY=-1" />
-    </bean>
-    
-    <bean id="pathIndexingService" class="edu.unc.lib.dcr.migration.paths.PathIndexingService"
-            init-method="createIndexTable">
-        <property name="pathIndex" ref="pathIndex" />
-    </bean>
 
     <bean id="injectedCdrVersion" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod" value="edu.unc.lib.dl.util.SoftwareAgentConstants.setCdrVersion" />
