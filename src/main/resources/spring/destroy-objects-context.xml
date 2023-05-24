@@ -26,11 +26,11 @@
         <property name="ignoreResourceNotFound" value="false" />
     </bean>
     
-    <bean id="globalPermissionEvaluator" class="edu.unc.lib.dl.acl.fcrepo4.GlobalPermissionEvaluator">
+    <bean id="globalPermissionEvaluator" class="edu.unc.lib.boxc.auth.fcrepo.services.GlobalPermissionEvaluatorImpl">
         <constructor-arg ref="aclProperties" />
     </bean>
     
-    <bean id="aclService" class="edu.unc.lib.dl.acl.fcrepo4.AccessControlServiceImpl">
+    <bean id="aclService" class="edu.unc.lib.boxc.auth.fcrepo.services.AccessControlServiceImpl">
         <property name="globalPermissionEvaluator" ref="globalPermissionEvaluator" />
     </bean>
     
@@ -52,7 +52,7 @@
     </bean>
     
     <bean id="destroyObjectsService"
-        class="edu.unc.lib.dl.persist.services.destroy.DestroyObjectsService">
+        class="edu.unc.lib.boxc.operations.jms.destroy.DestroyObjectsService">
         <property name="aclService" ref="aclService" />
         <property name="repositoryObjectLoader" ref="repositoryObjectLoader" />
         <property name="jmsTemplate" ref="destroyObjectsJmsTemplate" />

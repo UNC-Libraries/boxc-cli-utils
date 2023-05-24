@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:task="http://www.springframework.org/schema/task"
-    xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
@@ -20,9 +20,9 @@
   <context:component-scan base-package="org.fcrepo"/>
 
   <bean name="modeshapeRepofactory"
-      class="org.fcrepo.kernel.modeshape.spring.ModeShapeRepositoryFactoryBean"
-      p:repositoryConfiguration="${fcrepo.modeshape.configuration:repository-test.json}"
-      p:serverManagedPropertiesMode="strict" />
+        class="org.fcrepo.kernel.modeshape.spring.ModeShapeRepositoryFactoryBean"
+        p:repositoryConfiguration="${fcrepo.modeshape.configuration:repository-test.json}"
+        p:serverManagedPropertiesMode="strict" />
 
   <bean class="org.modeshape.jcr.ModeShapeEngine" init-method="start"/>
 
@@ -36,17 +36,17 @@
     <bean class="org.fcrepo.kernel.modeshape.identifiers.HashConverter"/>
     <bean class="org.fcrepo.kernel.modeshape.identifiers.NamespaceConverter"/>
   </util:list>
-  
+
   <!-- Configuration of namespace prefixes -->
   <bean name="rdfNamespaceRegistry" class="org.fcrepo.kernel.api.rdf.RdfNamespaceRegistry"
-      init-method="init">
+        init-method="init">
     <property name="configPath" value="${fcrepo.namespace.registry:#{null}}" />
     <property name="monitorForChanges" value="false" />
   </bean>
 
   <!-- External content configuration -->
   <bean name="externalContentPathValidator" class="org.fcrepo.http.api.ExternalContentPathValidator"
-      init-method="init">
+        init-method="init">
     <property name="configPath" value="${fcrepo.external.content.allowed:src/test/resources/allowed_external_paths.txt}" />
     <property name="monitorForChanges" value="false" />
   </bean>
@@ -71,10 +71,10 @@
 
   <!-- used by observer bean to map JCR events into Fedora events -->
   <bean name="fedoraEventMapper" class="org.fcrepo.kernel.modeshape.observer.eventmappings.AllNodeEventsOneEvent"/>
-  
+
   <!-- Fedora's lightweight internal event bus. Currently memory-resident.-->
   <bean name="fedoraInternalEventBus" class="com.google.common.eventbus.EventBus"/>
-  
+
   <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-  
+
 </beans>

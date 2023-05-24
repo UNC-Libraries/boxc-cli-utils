@@ -15,8 +15,8 @@
  */
 package edu.unc.lib.dcr.cli.utils;
 
+import static edu.unc.lib.boxc.model.api.ids.PIDConstants.DEPOSITS_QUALIFIER;
 import static edu.unc.lib.dcr.cli.utils.CLIConstants.OUTPUT_LOGGER;
-import static edu.unc.lib.dl.fedora.PIDConstants.DEPOSITS_QUALIFIER;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
@@ -28,11 +28,12 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 
-import edu.unc.lib.dl.event.PremisLogger;
-import edu.unc.lib.dl.event.PremisLoggerFactory;
-import edu.unc.lib.dl.fcrepo4.PIDs;
-import edu.unc.lib.dl.fedora.PID;
-import edu.unc.lib.dl.persist.services.deposit.DepositDirectoryManager;
+import edu.unc.lib.boxc.deposit.impl.model.DepositDirectoryManager;
+import edu.unc.lib.boxc.model.api.ids.PID;
+import edu.unc.lib.boxc.model.fcrepo.ids.PIDs;
+import edu.unc.lib.boxc.operations.api.events.PremisLogger;
+import edu.unc.lib.boxc.operations.api.events.PremisLoggerFactory;
+import edu.unc.lib.boxc.operations.impl.events.PremisLoggerFactoryImpl;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -68,7 +69,7 @@ public class VerifyPremisLogsCommand implements Callable<Integer> {
 
         DepositDirectoryManager depositDirectoryManager = new DepositDirectoryManager(
                 depositPid, parentCommand.depositBaseDir, hashNesting);
-        PremisLoggerFactory premisLoggerFactory = new PremisLoggerFactory();
+        PremisLoggerFactory premisLoggerFactory = new PremisLoggerFactoryImpl();
 
         AtomicBoolean errors = new AtomicBoolean();
         try (Stream<Path> fileStream = Files.walk(depositDirectoryManager.getEventsDir())) {

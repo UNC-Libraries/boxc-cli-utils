@@ -15,9 +15,9 @@
  */
 package edu.unc.lib.dcr.cli.utils;
 
+import static edu.unc.lib.boxc.model.api.ids.RepositoryPathConstants.DEPOSIT_RECORD_BASE;
+import static edu.unc.lib.boxc.model.api.rdf.RDFModelUtil.streamModel;
 import static edu.unc.lib.dcr.cli.utils.CLIConstants.OUTPUT_LOGGER;
-import static edu.unc.lib.dl.fcrepo4.RepositoryPathConstants.DEPOSIT_RECORD_BASE;
-import static edu.unc.lib.dl.util.RDFModelUtil.streamModel;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.jena.riot.RDFFormat.NTRIPLES;
 import static org.apache.jena.riot.RDFFormat.TURTLE;
@@ -31,9 +31,9 @@ import org.apache.commons.io.IOUtils;
 import org.apache.jena.riot.RDFFormat;
 import org.slf4j.Logger;
 
-import edu.unc.lib.dl.fcrepo4.PIDs;
-import edu.unc.lib.dl.fedora.PID;
-import edu.unc.lib.dl.persist.services.deposit.DepositModelManager;
+import edu.unc.lib.boxc.deposit.impl.model.DepositModelManager;
+import edu.unc.lib.boxc.model.api.ids.PID;
+import edu.unc.lib.boxc.model.fcrepo.ids.PIDs;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;

@@ -6,12 +6,12 @@
 
     <import resource="cdr-client-container.xml" />
     
-    <bean id="queryModel" class="edu.unc.lib.dl.util.RDFModelUtil" factory-method="createModel">
+    <bean id="queryModel" class="edu.unc.lib.boxc.model.api.rdf.RDFModelUtil" factory-method="createModel">
         <constructor-arg value="${dcr.it.rcd.model_file}" />
         <constructor-arg value="TURTLE" />
     </bean>
     
-    <bean id="sparqlQueryService" class="edu.unc.lib.dl.sparql.JenaSparqlQueryServiceImpl">
+    <bean id="sparqlQueryService" class="edu.unc.lib.boxc.model.fcrepo.sparql.JenaSparqlQueryServiceImpl">
         <constructor-arg ref="queryModel" />
     </bean>
     

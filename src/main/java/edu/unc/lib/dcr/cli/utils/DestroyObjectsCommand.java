@@ -27,9 +27,10 @@ import org.slf4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import edu.unc.lib.dl.acl.util.AccessGroupSet;
-import edu.unc.lib.dl.acl.util.AgentPrincipals;
-import edu.unc.lib.dl.persist.services.destroy.DestroyObjectsService;
+import edu.unc.lib.boxc.auth.api.models.AgentPrincipals;
+import edu.unc.lib.boxc.auth.fcrepo.models.AccessGroupSetImpl;
+import edu.unc.lib.boxc.auth.fcrepo.models.AgentPrincipalsImpl;
+import edu.unc.lib.boxc.operations.jms.destroy.DestroyObjectsService;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.ParentCommand;
@@ -89,7 +90,7 @@ public class DestroyObjectsCommand implements Callable<Integer> {
         }
         output.info(BannerUtility.getChompBanner("Destroy"));
 
-        AgentPrincipals agent = new AgentPrincipals(parentCommand.username, new AccessGroupSet(parentCommand.groups));
+        AgentPrincipals agent = new AgentPrincipalsImpl(parentCommand.username, new AccessGroupSetImpl(parentCommand.groups));
 
         try (ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(applicationContextPath)) {
             destroyService = context.getBean(DestroyObjectsService.class);

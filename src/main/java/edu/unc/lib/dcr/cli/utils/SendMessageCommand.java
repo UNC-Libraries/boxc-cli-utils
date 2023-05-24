@@ -15,8 +15,8 @@
  */
 package edu.unc.lib.dcr.cli.utils;
 
+import static edu.unc.lib.boxc.model.api.rdf.Fcrepo4Repository.Binary;
 import static edu.unc.lib.dcr.cli.utils.CLIConstants.OUTPUT_LOGGER;
-import static edu.unc.lib.dl.rdf.Fcrepo4Repository.Binary;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.fcrepo.client.LinkHeaderConstants.TYPE_REL;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -35,10 +35,10 @@ import javax.jms.Message;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpStatus;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.NodeIterator;
 import org.apache.jena.rdf.model.Property;
@@ -52,13 +52,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
-import edu.unc.lib.dl.exceptions.RepositoryException;
-import edu.unc.lib.dl.fcrepo4.FcrepoJmsConstants;
-import edu.unc.lib.dl.fcrepo4.PIDs;
-import edu.unc.lib.dl.fedora.PID;
-import edu.unc.lib.dl.rdf.Cdr;
-import edu.unc.lib.dl.rdf.Ldp;
-import edu.unc.lib.dl.util.RDFModelUtil;
+import edu.unc.lib.boxc.model.api.exceptions.RepositoryException;
+import edu.unc.lib.boxc.model.api.ids.PID;
+import edu.unc.lib.boxc.model.api.rdf.Cdr;
+import edu.unc.lib.boxc.model.api.rdf.Ldp;
+import edu.unc.lib.boxc.model.api.rdf.RDFModelUtil;
+import edu.unc.lib.boxc.model.fcrepo.ids.PIDs;
+import edu.unc.lib.boxc.fcrepo.FcrepoJmsConstants;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;

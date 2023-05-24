@@ -28,7 +28,7 @@
         <property name="pubSubDomain" value="false" />
     </bean>
     
-    <bean id="indexingMessageSender" class="edu.unc.lib.dl.services.IndexingMessageSender">
+    <bean id="indexingMessageSender" class="edu.unc.lib.boxc.operations.jms.indexing.IndexingMessageSender">
         <property name="jmsTemplate" ref="solrUpdateJmsTemplate" />
     </bean>
 </beans>

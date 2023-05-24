@@ -39,8 +39,7 @@ import picocli.CommandLine.Option;
         SendMessageCommand.class,
         SendSolrMessageCommand.class,
         RequeueDLQCommand.class,
-        DestroyObjectsCommand.class,
-        GenerateWorkCommand.class
+        DestroyObjectsCommand.class
     })
 public class CLIMain implements Callable<Integer> {
     private static final Logger output = getLogger(OUTPUT_LOGGER);
