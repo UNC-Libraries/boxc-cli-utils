@@ -13,6 +13,7 @@
     <bean name="propertiesURI" class="java.lang.System"
         factory-method="getProperty">
         <constructor-arg index="0" value="config.properties.uri" />
+        <constructor-arg index="1" value="classpath:amq_config.properties" />
     </bean>
     
     <bean id="serverProperties"

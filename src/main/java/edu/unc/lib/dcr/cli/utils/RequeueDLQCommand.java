@@ -56,6 +56,11 @@ public class RequeueDLQCommand {
             description = "Perform inspect queue without changing it")
     private boolean dryRun;
 
+    @Option(names = {"-l", "--limit"},
+            defaultValue = "1000",
+            description = "Max number of messages to move")
+    private int maxMessages;
+
     private String applicationContextPath = "spring/activemq-context.xml";
 
     @Command(name = "requeue_enhancements",
@@ -88,12 +93,22 @@ public class RequeueDLQCommand {
         return 0;
     }
 
-    @Command(name = "requeue_longleaf",
+    @Command(name = "requeue_longleaf_register",
             description = "Requeue longleaf register messages")
     public int requeueLongleaf() throws Exception {
         moveMessages("longleaf.dlq",
-                "register.longleaf",
-                "CamelFailureRouteId = 'direct-vm://filter.longleaf'",
+                "activemq:queue:longleaf.register.batch",
+                "CamelFailureRouteId LIKE '%/register.longleaf%'",
+                null);
+        return 0;
+    }
+
+    @Command(name = "requeue_longleaf_deregister",
+            description = "Requeue longleaf deregister messages")
+    public int requeueLongleafDeregister() throws Exception {
+        moveMessages("longleaf.dlq",
+                "activemq:queue:longleaf.deregister.batch",
+                "CamelFailureRouteId LIKE '%/deregister.longleaf%'",
                 null);
         return 0;
     }
@@ -130,7 +145,7 @@ public class RequeueDLQCommand {
 
             while (true) {
                 Message m = dlqConsumer.receive(500);
-                if (m != null) {
+                if (m != null && cnt < maxMessages) {
                     if (filterPred == null || filterPred.test(m)) {
                         output.info("Moving message {}", ++cnt);
                         if (!dryRun) {
