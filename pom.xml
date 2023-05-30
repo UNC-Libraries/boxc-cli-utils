@@ -29,10 +29,10 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation=
-                                        "org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                                                     "org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                 <transformer implementation=
-                                        "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>edu.unc.lib.dcr.migration.MigrationCLI</mainClass>
+                                                     "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>edu.unc.lib.dcr.cli.utils.CLIMain</mainClass>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>META-INF/spring.handlers</resource>
